@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Can We Learn from Harry Potter? An Exploratory Study of Visual Representation Learning from Atypical Videos</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <!-- FontAwesome (GitHub 图标) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- FontAwesome (支持 GitHub、Adobe 图标) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Academicons (arXiv 图标) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons/css/academicons.min.css">
+
+    <style>
+        body {
+            font-family: 'Google Sans', Arial, sans-serif;
+            text-align: center;
+            background-color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .authors {
+            font-size: 18px;
+            color: #007bff;
+        }
+        .affiliations {
+            font-size: 16px;
+            color: #555;
+        }
+        .journal {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;  /* 让按钮居中 */
+            gap: 10px;  /* 按钮之间的间距 */
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            background: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .button i {
+            margin-right: 8px;  /* 图标和文字的间距 */
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background: #333;
+        }
+        #toc-image {
+            margin: 30px auto;
+            max-width: 100%;
+            width: 600px; /* 可调整 */
+        }
+        #abstract {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: justify;
+        }
+        #abstract h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #abstract p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #474747;
+        }
+        #abstract strong {
+            font-weight: bold;
+            color: #000;
+        }
+        #Model {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            text-align: justify;
+        }
+        #model h2 {
+            text-align: left;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #model-image {
+            display: block;
+            margin: 30px auto;
+            max-width: 100%;
+            width: 550px; /* 可调整 */
+        }
+        #Experiment {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            text-align: justify;
+        }
+        #Experiment h2 {
+            text-align: left;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #image-top1 {
+            display: block;
+            margin: 30px auto;
+            max-width: 70%;
+            width: 550px; /* 可调整 */
+        }
+        #image-tsne {
+            display: block;
+            margin: 30px auto;
+            max-width: 100%;
+            width: 550px; /* 可调整 */
+        }
+        #image-exp {
+            display: block;
+            margin: 30px auto;
+            max-width: 100%;
+            width: 1000px; /* 可调整 */
+        }
+        #bibtex-container {
+        max-width: 900px;
+        margin: 50px auto;
+        text-align: left;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: monospace;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #bibtex-scroll {
+            max-width: 100%;
+            overflow-x: auto;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 2px;
+            /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); */
+        }
+
+        pre {
+            white-space: pre;
+            margin: 0;
+            padding: 0;  /* 移除默认内边距，确保文本左对齐 */
+        }
+
+        /* a:visited {
+            color: #007bff;
+        }         */
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>What Can We Learn from Harry Potter? <br> An Exploratory Study of Visual Representation Learning from <br> Atypical Videos</h1>
+        
+        <p class="authors">
+            <a href="">Qiyue Sun</a><sup>1,2</sup>, 
+            <a href="https://qiming-huang.github.io/">Qiming Huang</a><sup>1</sup>,
+            <span style="color: black;">Yang Yang</span><sup>2</sup>, 
+            <span style="color: black;">Hongjun Wang</span><sup>2</sup>
+            <a href="https://jianbojiao.com/">Jianbo Jiao</a><sup>1</sup>, 
+        </p>
+
+        <p class="affiliations">
+            <sup>1</sup><a href="https://mix.jianbojiao.com">MIx Group</a>, University of Birmingham, 
+            <sup>2</sup> Shandong University
+        </p>
+
+        <p class="journal">
+            <a href="https://bmvc2025.bmva.org/">In The Thirty Sixth British Machine Vision Conference (BMVC) 2025</a>
+        </p>
+        <div class="button-group">
+            <!-- GitHub Code 按钮 -->
+            <a class="button" href="" target="_blank">
+                <i class="fab fa-github"></i> Code
+            </a>
+        
+            <!-- 论文 Paper 按钮 -->
+            <a class="button" href="" target="_blank">
+                <i class="fa-solid fa-file-pdf"></i> Paper
+            </a>
+            <a class="button" href="" target="_blank">
+                <i class="fa-solid fa-file"></i> Dataset
+            </a>
+        </div>
+    </div>
+    <!-- <img id="toc" src="./model_TOC3.jpg"> -->
+    <div id = "toc" class="container">
+        <img id="toc-image" src="src/first_fig.png" alt="Table of Contents">
+    </div>
+    <section id="abstract">
+        <h1>Abstract</h1>
+        <p>Humans usually show exceptional generalisation and discovery ability in the open
+            world, when being shown uncommonly new concepts. Whereas most existing studies
+            in the literature focus on common typical data from closed sets, open-world novel dis-
+            covery is under-explored in videos. In this paper, we are interested in asking: what if
+            atypical unusual videos are exposed in the learning process? To this end, we collect a
+            new video dataset consisting of various types of unusual atypical data (e.g. sci-fi, an-
+            imation, etc.). To study how such atypical data may benefit open-world learning, we
+            feed them into the model training process for representation learning. Focusing on three
+            key tasks in open-world learning: out-of-distribution (OOD) detection, novel category
+            discovery (NCD), and zero-shot action recognition (ZSAR), we found that even straight-
+            forward learning approaches with atypical data consistently improve performance across
+            various settings. Furthermore, we found that increasing the categorical diversity of the
+            atypical samples further boosts OOD detection performance. Additionally, in the NCD
+            task, using a smaller yet more semantically diverse set of atypical samples leads to better
+            performance compared to using a larger but more typical dataset. In the ZSAR setting,
+            the semantic diversity of atypical videos helps the model generalise better to unseen ac-
+            tion classes. These observations in our extensive experimental evaluations reveal the
+            benefits of atypical videos for visual representation learning in the open world, together
+            with the newly proposed dataset, encouraging further studies in this direction.
+        </p>
+    </section>
+
+    <section id="Model">
+        <h1>llustration of open-world data and tasks</h1>
+        <img id="model-image" src="src/open_world.png" alt="Model" style="width: 85%; height: auto;">
+        <p>
+            (a) Comparison of open-world and
+            closed-world data distributions. Commonly used datasets such as Kinetics-400, UCF101,
+            HMDB51, and MiT-v2 represent more concentrated distributions and are considered closed-
+            world. In contrast, our proposed atypical dataset captures a broader, more diverse feature
+            space, better reflecting the open-world setting. (b) Overview of open-world tasks: OOD
+            detection identifies out-of-distribution (unknown) data from known categories; novel cate-
+            gory discovery (NCD) clusters the unknown data to reveal new classes; and zero-shot ac-
+            tion recognition (ZSAR) further classifies these new categories using semantic information.
+            These tasks form a natural progression, with increasing difficulty and reliance on model
+            generalisation.
+        </p>
+        
+
+        </p> Additionally, we introduce a data augmentation method for spectral data, called Adaptive Noise. 
+        This technique selectively applies vertical noise to regions containing absorption peaks, 
+        ensuring that the introduced noise does not alter the intrinsic spectral information and encourages the model to focus on peak positions more.
+        
+    </section>    
+
+    <section id="Model">
+        <h1>Dataset Statistics</h1>
+        <img id="model-image" src="src/data_stat.png" alt="Model" style="width: 100%; height: auto;">
+        <p>Existing publicly available datasets primarily focus on common human actions and activities. In contrast, our dataset introduces a broader spectrum of complex and diverse scenarios</p>
+        <p>Our atypical dataset en-
+            compasses a broad range of scenes, subjects, actions,
+            and other visual elements that are either rare or ex-
+            hibit substantial semantic or visual deviation from
+            those found in conventional, systematically curated
+            dataset</p>
+        
+
+        </p> Additionally, we introduce a data augmentation method for spectral data, called Adaptive Noise. 
+        This technique selectively applies vertical noise to regions containing absorption peaks, 
+        ensuring that the introduced noise does not alter the intrinsic spectral information and encourages the model to focus on peak positions more.
+        
+    </section>
+
+    <section id="Experiment">
+        <h1>Experiments</h1>
+        <h2>OOD detection performance</h2>
+        <img id="model-image" src="src/res_1.png" alt="Model" style="width: 70%; height: auto;">
+        <p>
+            For the OOD detection task, we explore the effect of introducing different auxiliary datasets
+            during the training stage. Evaluation is conducted on both standard OOD benchmarks
+            (HMDB51, MiT-v2) and more challenging atypical distributions (atypical-surreal, atypical-
+            theatre). 
+        </p>
+        <p>
+            Auxiliary datasets
+            with limited semantic content, such as Gaussian noise and Diving48, yield minimal im-
+            provements. In contrast, both Kinetics-400 and our proposed atypical dataset lead to notable
+            gains, with atypical achieving the best overall results across all metrics (FPR95, AUROC,
+            AUPR).
+        </p>
+
+        <h2>Novel category discovery</h2>
+        <img id="model-image" src="src/res_2.png" alt="Model" style="width: 70%; height: auto;">
+        <p>
+            For the NCD task, we investigate the impact of different auxiliary datasets during the self-
+            supervised pre-training stage. The baseline model is trained without auxiliary data. We com-
+            pare Kinetics-400, the original dataset itself (UCF101), our proposed atypical dataset, and
+            their combinations. 
+        </p>
+        <p>
+            When combined our atypical data with UCF101, it
+            achieves the best overall results, surpassing configurations that include Kinetics-400. These
+            findings highlight the effectiveness of atypical in enhancing novel category discovery
+        </p>
+        
+        <h2>Zero-shot action recognition</h2>
+        <img id="model-image" src="src/res_3.png" alt="Model" style="width: 70%; height: auto;">
+        <p>
+            Similar to the NCD task, we evaluate the impact of different auxiliary datasets on the per-
+            formance of ZSAR.
+        </p>      
+    </section>
+    
+    <div id="bibtex-container">
+    <h2>BibTeX</h2>
+    <div id="bibtex-scroll">
+    <pre>
+        @article{wu2025transformer,
+        title={What Can We Learn from Harry Potter? An Exploratory Study of Visual Representation Learning from Atypical Videos},
+        author={Sun, Qiyue and Huang, Qiming and Yang, Yang and Wang, Hongjun and Jiao, Jianbo},
+        journal={In The Thirty Sixth British Machine Vision Conference, 2025}
+        }
+    </pre>
+        </div>
+    </div>
+</body>
+</html>
