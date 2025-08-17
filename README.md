@@ -50,7 +50,7 @@ Each task has its own folder containing experiment setups, model configurations,
 If you use our dataset in your research, please cite our BMVC 2025 paper:
 
 ```bibtex
-@inproceedings{BMVC2025atypical,
+@inproceedings{Sun2025atypical,
   title={What Can We Learn from Harry Potter? An Exploratory Study of Visual Representation Learning from
 Atypical Videos},
 author={Qiyue Sun, Qiming Huang, Yang Yang, Hongjun Wang, Jianbo Jiao},
