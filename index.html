@@ -209,7 +209,7 @@
         </p>
         <div class="button-group">
             <!-- GitHub Code 按钮 -->
-            <a class="button" href="" target="_blank">
+            <a class="button" href="https://github.com/julysun98/atypical_dataset" target="_blank">
                 <i class="fab fa-github"></i> Code
             </a>
         
@@ -217,15 +217,28 @@
             <a class="button" href="" target="_blank">
                 <i class="fa-solid fa-file-pdf"></i> Paper
             </a>
-            <a class="button" href="" target="_blank">
+            <a class="button" href="https://huggingface.co/datasets/mixgroup-atypical/atypical" target="_blank">
                 <i class="fa-solid fa-file"></i> Dataset
             </a>
         </div>
     </div>
     <!-- <img id="toc" src="./model_TOC3.jpg"> -->
-    <div id = "toc" class="container">
+    <!-- <div id = "toc" class="container">
         <img id="toc-image" src="src/first_fig.png" alt="Table of Contents">
-    </div>
+    </div> -->
+
+    <div id="toc" class="container">
+    <iframe
+        src="https://www.youtube.com/embed/-AMkMvN1mMM?si=x8CZCEHDw-QoZw-L"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="width:100%; aspect-ratio:16/9; border:0;">
+    </iframe>
+    </div>       
+
     <section id="abstract">
         <h1>Abstract</h1>
         <p>Humans usually show exceptional generalisation and discovery ability in the open
@@ -248,7 +261,7 @@
             benefits of atypical videos for visual representation learning in the open world, together
             with the newly proposed dataset, encouraging further studies in this direction.
         </p>
-    </section>
+    </section> 
 
     <section id="Model">
         <h1>llustration of open-world data and tasks</h1>
@@ -271,11 +284,34 @@
         This technique selectively applies vertical noise to regions containing absorption peaks, 
         ensuring that the introduced noise does not alter the intrinsic spectral information and encourages the model to focus on peak positions more.
         
-    </section>    
-
+    </section> 
+    
     <section id="Model">
         <h1>Dataset Statistics</h1>
-        <img id="model-image" src="src/data_stat.png" alt="Model" style="width: 100%; height: auto;">
+
+        <div class="carousel">
+            <button class="prev" type="button" aria-label="Previous">&#10094;</button>
+            <img id="data_stat" src="src/data_stat_1.png" alt="Model">
+            <button class="next" type="button" aria-label="Next">&#10095;</button>
+        </div>
+
+        <p>
+            Existing publicly available datasets primarily focus on common human actions and activities.
+            In contrast, our dataset introduces a broader spectrum of complex and diverse scenarios
+        </p>
+        <p>
+            Our atypical dataset encompasses a broad range of scenes, subjects, actions, and other visual elements
+            that are either rare or exhibit substantial semantic or visual deviation from those found in conventional,
+            systematically curated datasets.
+        </p>
+        <p>
+            Additionally, we introduce a data augmentation method for spectral data, called Adaptive Noise...
+        </p>
+    </section>
+
+    <!-- <section id="Model">
+        <h1>Dataset Statistics</h1>
+        <img id="model-image" src="src/data_stat_1.png" alt="Model" style="width: 100%; height: auto;">
         <p>Existing publicly available datasets primarily focus on common human actions and activities. In contrast, our dataset introduces a broader spectrum of complex and diverse scenarios</p>
         <p>Our atypical dataset en-
             compasses a broad range of scenes, subjects, actions,
@@ -289,7 +325,7 @@
         This technique selectively applies vertical noise to regions containing absorption peaks, 
         ensuring that the introduced noise does not alter the intrinsic spectral information and encourages the model to focus on peak positions more.
         
-    </section>
+    </section> -->
 
     <section id="Experiment">
         <h1>Experiments</h1>
@@ -335,13 +371,75 @@
     <h2>BibTeX</h2>
     <div id="bibtex-scroll">
     <pre>
-        @article{wu2025transformer,
+        @article{Sun2025atypical,
         title={What Can We Learn from Harry Potter? An Exploratory Study of Visual Representation Learning from Atypical Videos},
         author={Sun, Qiyue and Huang, Qiming and Yang, Yang and Wang, Hongjun and Jiao, Jianbo},
         journal={In The Thirty Sixth British Machine Vision Conference, 2025}
         }
     </pre>
         </div>
-    </div>
+    </div>    
 </body>
 </html>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const images = ["src/data_stat_1.png", "src/data_stat_2.png"]; // 两张图
+    let current = 0;
+
+    const imgElement = document.getElementById("data_stat"); // 改了这里
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+
+    if (!imgElement || !prevBtn || !nextBtn) return;
+
+    prevBtn.addEventListener("click", () => {
+        current = (current - 1 + images.length) % images.length;
+        imgElement.src = images[current];
+    });
+
+    nextBtn.addEventListener("click", () => {
+        current = (current + 1) % images.length;
+        imgElement.src = images[current];
+    });
+    });
+    </script>
+
+<style>
+    .carousel {
+    width: 600px;   /* 固定轮播宽度 */
+    height: 400px;  /* 固定轮播高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;  /* 防止图片超出 */
+
+    margin: 0 auto;        /* ✅ 让整个容器水平居中 */
+    }
+
+    .carousel img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 保持比例，不裁切 */
+    }
+    .carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 2;            /* 按钮在上层 */
+    line-height: 1;
+    }
+    .carousel .prev { left: 0.25rem; }
+    .carousel .next { right: 0.25rem; }
+
+    #toc {
+    margin: 1rem auto 0 auto;  /* 顶部 1rem，水平居中 */
+    }    
+</style>  
